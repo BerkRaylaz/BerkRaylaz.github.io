@@ -146,3 +146,16 @@ html[lang=en] [data-en]{display:revert}
 .cert-body .co{color:var(--accent);font-weight:500;font-size:14px;margin-top:2px}
 .cert-body .date{color:var(--muted);font-size:13.5px}
 .cert-body p{color:#4a4741;font-size:14.5px;margin-top:8px}
+
+/* projects extras */
+.card.wide{grid-column:1/-1}
+.card.c1.wide{transform:rotate(-.5deg)}
+.card.c1.wide:hover{transform:rotate(0) translateY(-4px)}
+.card.c5{background:#b9a8ff;transform:rotate(-.7deg)}
+.tl{list-style:none;margin:20px 0 0;padding:0 0 0 22px;border-left:2px solid rgba(28,27,25,.25)}
+.tl li{position:relative;padding:0 0 18px;font-size:14.8px}
+.tl li:last-child{padding-bottom:0}
+.tl li::before{content:"";position:absolute;left:-29px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 3px var(--sun)}
+.tl li:first-child::before{background:var(--coral)}
+.tl .tl-date{display:block;font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;opacity:.65}
+.tl strong{display:block;font-size:16px;margin:1px 0 2px}

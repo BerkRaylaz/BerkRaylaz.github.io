@@ -10,321 +10,54 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=IBM+Plex+Sans:wght@400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#1c1b19; --muted:#6b6862; --line:#e6e2da; --paper:#faf8f4; --white:#fff;
-    --accent:#1f4e5f;
-    --coral:#ff6b4a; --sun:#ffc93c; --teal:#2ec4b6; --plum:#7b5cff; --pink:#ff8fc7;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:'IBM Plex Sans',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;font-size:16.5px}
-  a{color:inherit}
-  .wrap{max-width:880px;margin:0 auto;padding:0 24px}
-
-  /* NAV */
-  nav{position:sticky;top:0;z-index:10;background:rgba(250,248,244,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-  .logo{font-family:'Fraunces',serif;font-weight:800;font-size:20px;text-decoration:none;letter-spacing:-.02em}
-  .logo span{color:var(--coral)}
-  .links{display:flex;gap:22px;align-items:center;font-size:14.5px}
-  .links a{text-decoration:none;color:var(--muted);transition:color .2s}
-  .links a:hover{color:var(--ink)}
-  .lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--white)}
-  .lang button{border:0;background:none;padding:5px 11px;font:600 12.5px 'IBM Plex Sans';cursor:pointer;color:var(--muted)}
-  .lang button.on{background:var(--ink);color:var(--white)}
-  @media(max-width:680px){.links a{display:none}}
-
-  /* HERO */
-  .hero{padding:80px 0 56px;display:grid;grid-template-columns:1fr 200px;gap:48px;align-items:center}
-  .hero h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(44px,7vw,68px);line-height:1.02;letter-spacing:-.035em}
-  .hero .role{margin-top:16px;font-size:19px;color:var(--accent);font-weight:500}
-  .hero .loc{margin-top:6px;color:var(--muted);font-size:15px}
-  .btns{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
-  .btn{display:inline-block;padding:11px 20px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;transition:transform .15s,box-shadow .15s}
-  .btn.dark{background:var(--ink);color:var(--white)}
-  .btn.light{border:1.5px solid var(--ink)}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.1)}
-  .photo{width:200px;height:200px;border-radius:50%;overflow:hidden;background:linear-gradient(135deg,var(--accent),#3d7f93);display:grid;place-items:center;color:#fff;font-family:'Fraunces',serif;font-size:58px;font-weight:600;box-shadow:0 0 0 8px var(--white),0 0 0 9px var(--line)}
-  .photo{position:relative}
-  .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  @media(max-width:680px){.hero{grid-template-columns:1fr;padding-top:48px}.photo{width:140px;height:140px;font-size:42px;order:-1}}
-
-  /* SERIOUS SECTIONS */
-  section{padding:48px 0;border-top:1px solid var(--line)}
-  h2{font-family:'Fraunces',serif;font-weight:600;font-size:28px;letter-spacing:-.02em;margin-bottom:22px}
-  .about p{max-width:680px;margin-bottom:14px;color:#33312d}
-  .job{display:grid;grid-template-columns:170px 1fr;gap:24px;padding:20px 0;border-bottom:1px dashed var(--line)}
-  .job:last-child{border-bottom:0}
-  .job .date{color:var(--muted);font-size:14px;padding-top:3px}
-  .job h3{font-size:17.5px;font-weight:600}
-  .job .co{color:var(--accent);font-weight:500;font-size:15px}
-  .job ul{margin:10px 0 0 18px;color:#3a3833;font-size:15.5px}
-  .job li{margin-bottom:5px}
-  .num{font-weight:600;color:var(--ink)}
-  @media(max-width:680px){.job{grid-template-columns:1fr;gap:4px}}
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
-  @media(max-width:680px){.grid2{grid-template-columns:1fr}}
-  .tags{display:flex;flex-wrap:wrap;gap:8px}
-  .tag{border:1px solid var(--line);background:var(--white);padding:5px 12px;border-radius:999px;font-size:14px}
-  .sub{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;font-weight:600}
-  .langrow{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:15.5px}
-  .langrow span:last-child{color:var(--muted)}
-
-  /* COLORFUL SECTION */
-  .fun{background:var(--ink);color:#fff;border-top:0;padding:72px 0;position:relative;overflow:hidden}
-  .fun h2{color:#fff;font-size:34px}
-  .fun h2 .scribble{font-family:'Caveat',cursive;color:var(--sun);font-size:38px;font-weight:600;margin-left:6px}
-  .fun .intro{color:#c9c5bd;max-width:600px;margin:-8px 0 36px}
-  .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.35;pointer-events:none}
-  .b1{width:320px;height:320px;background:var(--coral);top:-80px;right:-60px;animation:float 9s ease-in-out infinite}
-  .b2{width:260px;height:260px;background:var(--plum);bottom:-80px;left:-60px;animation:float 11s ease-in-out infinite reverse}
-  @keyframes float{50%{transform:translate(30px,25px) scale(1.08)}}
-  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;position:relative}
-  @media(max-width:680px){.cards{grid-template-columns:1fr}}
-  .card{border-radius:20px;padding:26px;color:var(--ink);transition:transform .25s cubic-bezier(.3,1.6,.6,1);position:relative}
-  .card:nth-child(1){background:var(--sun);transform:rotate(-1.2deg)}
-  .card:nth-child(2){background:var(--teal);transform:rotate(1deg)}
-  .card:nth-child(3){background:var(--pink);transform:rotate(.8deg)}
-  .card:nth-child(4){background:var(--coral);transform:rotate(-.9deg)}
-  .card:hover{transform:rotate(0) translateY(-6px) scale(1.02)}
-  .card .emoji{font-size:34px;line-height:1}
-  .card h3{font-family:'Fraunces',serif;font-weight:800;font-size:22px;margin:12px 0 2px;letter-spacing:-.02em}
-  .card .meta{font-size:13.5px;font-weight:600;opacity:.7;margin-bottom:10px}
-  .card p{font-size:15px}
-  .card .pill{display:inline-block;margin-top:14px;background:var(--ink);color:#fff;padding:5px 12px;border-radius:999px;font-size:13px;font-weight:600;text-decoration:none}
-  .soon{position:absolute;top:18px;right:18px;background:#fff;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;animation:pulse 2s infinite}
-  @keyframes pulse{50%{transform:scale(1.08)}}
-
-  /* CONTACT */
-  .contact{text-align:center;padding:72px 0}
-  .contact h2{font-size:34px}
-  .contact p{color:var(--muted);margin:-8px auto 26px;max-width:480px}
-  .socials{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:22px}
-  .socials a{padding:9px 16px;border:1px solid var(--line);border-radius:10px;background:var(--white);text-decoration:none;font-size:14.5px;font-weight:500;transition:border-color .2s}
-  .socials a:hover{border-color:var(--ink)}
-  footer{text-align:center;color:var(--muted);font-size:13px;padding:24px 0 40px}
-
-  /* reveal */
-  .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
-  .rv.in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.b1,.b2,.soon{animation:none}}
-
-  [data-en]{display:none}
-  html[lang=en] [data-tr]{display:none}
-  html[lang=en] [data-en]{display:revert}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-page="home">
+<main class="wrap">
 
-<nav>
-  <div class="wrap">
-    <a href="#" class="logo">Berk<span>.</span></a>
-    <div class="links">
-      <a href="#about"><span data-tr>Hakkımda</span><span data-en>About</span></a>
-      <a href="#experience"><span data-tr>Deneyim</span><span data-en>Experience</span></a>
-      <a href="#projects"><span data-tr>Projeler</span><span data-en>Projects</span></a>
-      <a href="#contact"><span data-tr>İletişim</span><span data-en>Contact</span></a>
-      <div class="lang">
-        <button id="btn-tr" onclick="setLang('tr')">TR</button>
-        <button id="btn-en" onclick="setLang('en')">EN</button>
-      </div>
-    </div>
-  </div>
-</nav>
-
-<div class="wrap">
   <header class="hero">
     <div>
       <h1>Berk Raylaz</h1>
       <div class="role"><span data-tr>Satış &amp; Pazarlama · ODTÜ Sosyoloji</span><span data-en>Sales &amp; Marketing · METU Sociology</span></div>
       <div class="loc">📍 <span data-tr>Ankara / İstanbul</span><span data-en>Ankara / Istanbul, Türkiye</span></div>
+
+      <div class="bio">
+        <div data-tr>
+          <p>Merhaba, ben Berk. ODTÜ Sosyoloji mezunuyum; insanların neyi neden satın aldığını anlamaya meraklıyım ve bu merakı satış ve pazarlamaya taşıyorum.</p>
+          <p>Son olarak Frudate'te Avrupa, BAE ve Türkiye'deki market zincirleriyle B2B satış görüşmeleri yürüttüm, pazaryeri kanallarını ve dijital pazarlamayı yönettim. Şu anda satış ve pazarlama alanında yeni fırsatlara açığım.</p>
+        </div>
+        <div data-en>
+          <p>Hi, I'm Berk. I studied Sociology at METU. I'm curious about why people buy what they buy, and I bring that curiosity to sales and marketing.</p>
+          <p>Most recently at Frudate, I led B2B sales conversations with grocery chains in Europe, the UAE and Türkiye, and ran marketplace channels and digital marketing. I'm currently open to new opportunities in sales and marketing.</p>
+        </div>
+      </div>
+
       <div class="btns">
-        <a class="btn dark" href="cv-tr.pdf" data-tr download>CV'yi indir ↓</a>
-        <a class="btn dark" href="cv-en.pdf" data-en download>Download CV ↓</a>
-        <a class="btn light" href="#contact"><span data-tr>İletişime geç</span><span data-en>Get in touch</span></a>
+        <a class="btn dark" href="experience.html"><span data-tr>Deneyimlerim →</span><span data-en>My experience →</span></a>
+        <a class="btn light" href="cv-tr.pdf" target="_blank" rel="noopener" data-tr>CV'yi görüntüle</a>
+        <a class="btn light" href="cv-en.pdf" target="_blank" rel="noopener" data-en>View CV</a>
       </div>
     </div>
     <div class="photo">
-      <!-- photo.jpg dosyasını yükleyince otomatik görünür -->
       <img src="photo.jpg" alt="Berk Raylaz" onerror="this.remove()">
       <span>BR</span>
     </div>
   </header>
 
-  <section id="about" class="about rv">
-    <h2><span data-tr>Hakkımda</span><span data-en>About me</span></h2>
-    <div data-tr>
-      <p>Merhaba, ben Berk. ODTÜ Sosyoloji mezunuyum ve insanların neyi neden satın aldığını, birbirleriyle nasıl ilişki kurduğunu anlamak ilgimi en çok çeken şey. Bu merakı satış ve pazarlamaya taşıyorum.</p>
-      <p>Son olarak sağlıklı atıştırmalık girişimi Frudate'te Pazarlama ve Satış Uzmanı olarak çalıştım. Avrupa ve BAE'deki market zincirleriyle ihracat görüşmeleri yaptım, Türkiye'deki ulusal zincirlerle listeleme müzakerelerinde bulundum, Trendyol ve Hepsiburada kanallarını yönettim. Öncesinde Alfanar'da İK ve organizasyonel gelişim tarafında çalıştım.</p>
-      <p>Şu anda satış ve pazarlama alanında yeni fırsatlara açığım. Tanışmak isterseniz bana yazabilirsiniz.</p>
+  <div id="contact" class="contact-box rv">
+    <div>
+      <h2><span data-tr>İletişim 👋</span><span data-en>Contact 👋</span></h2>
+      <p><span data-tr>Bir pozisyon, iş birliği ya da sadece merhaba demek için bana ulaşabilirsiniz.</span><span data-en>Reach out about a role, a collaboration, or just to say hi.</span></p>
     </div>
-    <div data-en>
-      <p>Hi, I'm Berk. I studied Sociology at METU, and what interests me most is understanding why people buy what they buy and how they connect with each other. I bring that curiosity to sales and marketing.</p>
-      <p>Most recently I worked as a Marketing &amp; Sales Specialist at Frudate, a healthy snack startup. I pitched to grocery chains in Europe and the UAE for export, negotiated listings with national chains in Türkiye, and ran our Trendyol and Hepsiburada channels. Before that, I worked in HR and organizational development at Alfanar.</p>
-      <p>I'm currently open to new opportunities in sales and marketing. Feel free to reach out.</p>
-    </div>
-  </section>
-
-  <section id="experience" class="rv">
-    <h2><span data-tr>Deneyim</span><span data-en>Experience</span></h2>
-
-    <div class="job">
-      <div class="date"><span data-tr>Eyl 2025 – Ağu 2026</span><span data-en>Sep 2025 – Aug 2026</span></div>
-      <div>
-        <h3><span data-tr>Pazarlama ve Satış Uzmanı</span><span data-en>Marketing &amp; Sales Specialist</span></h3>
-        <div class="co">Frudate</div>
-        <ul data-tr>
-          <li>Avrupa ve BAE'deki market zincirlerine ulaşıp alıcı görüşmelerinde markayı sundum.</li>
-          <li>Türkiye'nin önde gelen süpermarket ve toptan zincirleriyle listeleme müzakereleri yürüttüm.</li>
-          <li>Trendyol takipçisini <span class="num">%433</span> artırdım (3.000 → 16.000).</li>
-          <li><span class="num">75</span> içerik üreticisiyle iş birliği kurdum: <span class="num">2M+</span> görüntülenme.</li>
-          <li>Meta Ads'te ROAS'ı 10 haftada <span class="num">0,3x → 1,2x</span>'e çıkardım.</li>
-        </ul>
-        <ul data-en>
-          <li>Prospected grocery chains across Europe and the UAE and pitched the brand in buyer meetings.</li>
-          <li>Negotiated listings with leading national supermarket and wholesale chains in Türkiye.</li>
-          <li>Grew Trendyol followers by <span class="num">433%</span> (3,000 → 16,000).</li>
-          <li>Built collaborations with <span class="num">75</span> creators: <span class="num">2M+</span> views.</li>
-          <li>Improved Meta Ads ROAS from <span class="num">0.3x → 1.2x</span> in 10 weeks.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="job">
-      <div class="date"><span data-tr>Ağu 2024 – Haz 2025</span><span data-en>Aug 2024 – Jun 2025</span></div>
-      <div>
-        <h3><span data-tr>İnsani Değerler ve Org. Gelişim Stajyeri</span><span data-en>Human Values &amp; Organizational Development Intern</span></h3>
-        <div class="co">SFA Electric | Alfanar</div>
-        <ul data-tr>
-          <li><span class="num">50+</span> aday mülakatına katıldım, uçtan uca işe alım süreçlerini destekledim.</li>
-          <li><span class="num">30+</span> eğitim programının ve 3 çalışan bağlılığı etkinliğinin organizasyonunda yer aldım.</li>
-        </ul>
-        <ul data-en>
-          <li>Took part in <span class="num">50+</span> candidate interviews and supported full-cycle recruitment.</li>
-          <li>Helped organize <span class="num">30+</span> training programs and 3 employee engagement events.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="rv">
-    <div class="grid2">
-      <div>
-        <h2><span data-tr>Eğitim</span><span data-en>Education</span></h2>
-        <div class="job" style="grid-template-columns:1fr;padding-top:0">
-          <div>
-            <h3><span data-tr>Sosyoloji Lisans</span><span data-en>B.A. in Sociology</span></h3>
-            <div class="co"><span data-tr>Orta Doğu Teknik Üniversitesi (ODTÜ)</span><span data-en>Middle East Technical University (METU)</span></div>
-            <div class="date"><span data-tr>Haziran 2026</span><span data-en>June 2026</span></div>
-          </div>
-        </div>
-        <div class="job" style="grid-template-columns:1fr">
-          <div>
-            <h3><span data-tr>Pazarlama ve Satış Eğitim Programı</span><span data-en>Marketing &amp; Sales Training Program</span></h3>
-            <div class="co">Social Office</div>
-            <div class="date"><span data-tr>Ocak – Mart 2025</span><span data-en>Jan – Mar 2025</span></div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <h2><span data-tr>Diller</span><span data-en>Languages</span></h2>
-        <div class="langrow"><span data-tr>Türkçe</span><span data-en>Turkish</span><span><span data-tr>Ana dil</span><span data-en>Native</span></span></div>
-        <div class="langrow"><span data-tr>İngilizce</span><span data-en>English</span><span>C1</span></div>
-        <div class="langrow"><span data-tr>Almanca</span><span data-en>German</span><span>A2</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="rv">
-    <h2><span data-tr>Yetkinlikler</span><span data-en>Skills</span></h2>
-    <div class="sub"><span data-tr>Alanlar</span><span data-en>Areas</span></div>
-    <div class="tags" data-tr style="margin-bottom:22px">
-      <span class="tag">B2B Müşteri Bulma</span><span class="tag">Müzakere</span><span class="tag">Perakende ve Pazaryeri Satışı</span><span class="tag">Dijital Pazarlama</span><span class="tag">İçerik Üretimi</span><span class="tag">Satış Raporlama</span><span class="tag">İşe Alım</span><span class="tag">Etkinlik Yönetimi</span>
-    </div>
-    <div class="tags" data-en style="margin-bottom:22px">
-      <span class="tag">B2B Prospecting</span><span class="tag">Negotiation</span><span class="tag">Retail &amp; Marketplace Sales</span><span class="tag">Digital Marketing</span><span class="tag">Content Creation</span><span class="tag">Sales Reporting</span><span class="tag">Recruitment</span><span class="tag">Event Management</span>
-    </div>
-    <div class="sub"><span data-tr>Araçlar</span><span data-en>Tools</span></div>
-    <div class="tags">
-      <span class="tag">Meta Ads Manager</span><span class="tag">Trendyol &amp; Hepsiburada</span><span class="tag">Canva</span><span class="tag">MS Office</span><span class="tag">SAP</span><span class="tag">SPSS</span><span class="tag">Lightroom</span><span class="tag">Claude</span>
-    </div>
-  </section>
-</div>
-
-<!-- COLORFUL: volunteer & creative -->
-<section id="projects" class="fun">
-  <div class="blob b1"></div><div class="blob b2"></div>
-  <div class="wrap">
-    <h2><span data-tr>İşin eğlenceli kısmı</span><span data-en>The fun part</span><span class="scribble">✦</span></h2>
-    <p class="intro"><span data-tr>Gönüllü olarak yaptığım, ürettiğim ve üzerinde çalıştığım şeyler.</span><span data-en>Things I've built, made and volunteered for.</span></p>
-    <div class="cards rv">
-      <div class="card">
-        <div class="emoji">🤝</div>
-        <h3>BEST Ankara</h3>
-        <div class="meta"><span data-tr>İK Koordinatörü · 2022–2023</span><span data-en>HR Coordinator · 2022–2023</span></div>
-        <p data-tr>5 kişilik işe alım komitesini yönettim, yeni üyeler için oryantasyon programı tasarladım. Üye kaybını %15 azalttık.</p>
-        <p data-en>Led a 5-person recruitment committee and designed the onboarding program for new members. We cut member attrition by 15%.</p>
-      </div>
-      <div class="card">
-        <div class="emoji">🎪</div>
-        <h3>UWS'22</h3>
-        <div class="meta"><span data-tr>Ana Organizatör · 2021–2022</span><span data-en>Main Organizer · 2021–2022</span></div>
-        <p data-tr>60.000 TL bütçeli uluslararası öğrenci etkinliği. Sponsorlarla görüşüp maliyetin önemli kısmını karşıladık, 10 kişilik gönüllü ekibe liderlik ettim.</p>
-        <p data-en>An international student event with a TRY 60,000 budget. I pitched to sponsors who covered a big share of the costs and led a team of 10 volunteers.</p>
-      </div>
-      <div class="card">
-        <div class="emoji">🎬</div>
-        <h3>@berkrylz</h3>
-        <div class="meta"><span data-tr>Reels &amp; içerik üretimi</span><span data-en>Reels &amp; content creation</span></div>
-        <p data-tr>Çekim, kurgu ve müzik seçimine kadar kendi ürettiğim kısa videolar. Sakin, ASMR tadında kahve demleme videoları favorim.</p>
-        <p data-en>Short videos I shoot, edit and score myself. My favourites are calm, ASMR-style coffee brewing clips.</p>
-        <a class="pill" href="https://instagram.com/berkrylz" target="_blank" rel="noopener"><span data-tr>İzle →</span><span data-en>Watch →</span></a>
-      </div>
-      <div class="card">
-        <span class="soon"><span data-tr>Yakında</span><span data-en>Soon</span></span>
-        <div class="emoji">🎙️</div>
-        <h3>Sosyal Pilim Bitti</h3>
-        <div class="meta"><span data-tr>Podcast · ablamla birlikte</span><span data-en>Podcast · with my sister</span></div>
-        <p data-tr>Gündemi sosyoloji ve siyaset bilimi gözüyle konuştuğumuz bir podcast. İlk bölümler yolda.</p>
-        <p data-en>A podcast where we talk about current topics through the lenses of sociology and political science. First episodes on the way.</p>
-      </div>
+    <div class="contact-list">
+      <a href="mailto:brkraylaz@gmail.com"><span class="ic" style="background:#ff6b4a">@</span>brkraylaz@gmail.com</a>
+      <a href="https://linkedin.com/in/berk-raylaz" target="_blank" rel="noopener"><span class="ic" style="background:#0a66c2">in</span>LinkedIn</a>
+      <a href="https://instagram.com/berkrylz" target="_blank" rel="noopener"><span class="ic" style="background:linear-gradient(45deg,#f9a03f,#d62976,#7b5cff)">ig</span>@berkrylz</a>
+      <a href="https://github.com/BerkRaylaz" target="_blank" rel="noopener"><span class="ic" style="background:#1c1b19">gh</span>GitHub</a>
     </div>
   </div>
-</section>
 
-<div class="wrap">
-  <section id="contact" class="contact rv" style="border-top:0">
-    <h2><span data-tr>Tanışalım 👋</span><span data-en>Let's talk 👋</span></h2>
-    <p><span data-tr>Bir pozisyon, iş birliği ya da sadece merhaba demek için.</span><span data-en>About a role, a collaboration, or just to say hi.</span></p>
-    <a class="btn dark" href="mailto:brkraylaz@gmail.com">brkraylaz@gmail.com</a>
-    <div class="socials">
-      <a href="https://linkedin.com/in/berk-raylaz" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://instagram.com/berkrylz" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://github.com/KULLANICIADI" target="_blank" rel="noopener">GitHub</a>
-    </div>
-  </section>
-</div>
-
-<footer>© 2026 Berk Raylaz</footer>
-
-<script>
-  function setLang(l){
-    document.documentElement.lang = l;
-    document.getElementById('btn-tr').classList.toggle('on', l==='tr');
-    document.getElementById('btn-en').classList.toggle('on', l==='en');
-    try{ localStorage.setItem('lang', l); }catch(e){}
-  }
-  (function(){
-    var saved = null;
-    try{ saved = localStorage.getItem('lang'); }catch(e){}
-    var l = saved || ((navigator.language||'tr').toLowerCase().startsWith('tr') ? 'tr' : 'en');
-    setLang(l);
-  })();
-  var io = new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, {threshold:.12});
-  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
-</script>
+</main>
+<script src="main.js"></script>
 </body>
 </html>

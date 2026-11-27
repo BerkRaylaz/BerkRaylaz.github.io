@@ -151,7 +151,10 @@ html[lang=en] [data-en]{display:revert}
 .card.wide{grid-column:1/-1}
 .card.c1.wide{transform:rotate(-.5deg)}
 .card.c1.wide:hover{transform:rotate(0) translateY(-4px)}
-.card.c5{background:#b9a8ff;transform:rotate(-.7deg)}
+.card.c5{background:#4f35c9;color:#fff;transform:rotate(-.7deg)}
+.card.c5 .meta{opacity:.85}
+.card.c5 p,.card.c5 li{color:#f1edff}
+.card.c5 .pill{background:#fff;color:#2a1a7a}
 .tl{list-style:none;margin:20px 0 0;padding:0 0 0 22px;border-left:2px solid rgba(28,27,25,.25)}
 .tl li{position:relative;padding:0 0 18px;font-size:14.8px}
 .tl li:last-child{padding-bottom:0}
